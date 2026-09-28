@@ -1,0 +1,15 @@
+# Automata con pila que reconoce a^n b^n (n >= 1)
+# Aceptacion por estado final (APf)
+
+q0 q1 q2            # Q
+a b                 # Sigma
+A Z                 # Gamma
+q0                  # estado inicial
+Z                   # simbolo inicial de pila
+q2                  # F
+
+q0 a Z q0 AZ        # (q0, AZ) in delta(q0, a, Z)
+q0 a A q0 AA        # (q0, AA) in delta(q0, a, A)
+q0 b A q1 .         # (q1, eps) in delta(q0, b, A)
+q1 b A q1 .         # (q1, eps) in delta(q1, b, A)
+q1 . Z q2 Z         # (q2, Z) in delta(q1, eps, Z)
