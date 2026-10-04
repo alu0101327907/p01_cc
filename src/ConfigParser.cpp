@@ -8,22 +8,38 @@ namespace pda {
 
 namespace {
 
+/// @brief Elimina espacios, tabs y saltos de línea de ambos extremos de la cadena.
+/// @param s Cadena de entrada.
+/// @return Copia de @p s sin espacios iniciales ni finales. Cadena vacía si @p s es solo espacios.
 std::string trim(const std::string& s) {
-    const auto b = s.find_first_not_of(" \t\r\n");
-    if (b == std::string::npos) return "";
-    const auto e = s.find_last_not_of(" \t\r\n");
-    return s.substr(b, e - b + 1);
+  const auto b = s.find_first_not_of(" \t\r\n");
+  if (b == std::string::npos) return "";
+  const auto e = s.find_last_not_of(" \t\r\n");
+  return s.substr(b, e - b + 1);
 }
 
+/// @brief Divide una cadena en tokens separados por cualquier cantidad de espacios en blanco.
+/// @param s Cadena de entrada.
+/// @return Vector con los tokens no vacíos, en el orden en que aparecen.
+///         Vector vacío si @p s es vacía o solo contiene espacios.
 std::vector<std::string> splitTokens(const std::string& s) {
-    std::vector<std::string> out;
-    std::istringstream iss(s);
-    std::string tok;
-    while (iss >> tok) out.push_back(tok);
-    return out;
+  std::vector<std::string> out;
+  std::istringstream iss(s);
+  std::string tok;
+  while (iss >> tok) out.push_back(tok);
+  return out;
 }
 
-/// Convierte un token del fichero en símbolo interno. '.' -> epsilon.
+/// @brief Convierte un token en un símbolo interno de un único carácter.
+///
+/// El token "." se interpreta como epsilon (@ref EPSILON). Cualquier otro
+/// token debe tener longitud exactamente 1.
+///
+/// @param tok Token del fichero (ej. "a", "Z", ".").
+/// @param what Descripción del contexto, usada solo en el mensaje de error
+///             (ej. "simbolo de entrada", "simbolo de pila").
+/// @return El carácter del símbolo, o EPSILON si @p tok es ".".
+/// @throws std::runtime_error Si @p tok no es "." ni un único carácter.
 char toSymbol(const std::string& tok, const std::string& what) {
     if (tok == ".") return EPSILON;
     if (tok.size() != 1)
