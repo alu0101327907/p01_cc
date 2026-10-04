@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "pda/Automaton.hpp"
-#include "pda/ConfigParser.hpp"
-#include "pda/Simulator.hpp"
+#include "Automaton.hpp"
+#include "ConfigParser.hpp"
+#include "Simulator.hpp"
 
 namespace {
 

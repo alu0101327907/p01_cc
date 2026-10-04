@@ -1,2 +1,2 @@
-build/Transition.o: src/Transition.cpp include/pda/Transition.hpp
-include/pda/Transition.hpp:
+build/Transition.o: src/Transition.cpp include/Transition.hpp
+include/Transition.hpp:

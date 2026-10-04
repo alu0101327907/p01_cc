@@ -1,5 +1,5 @@
-build/Simulator.o: src/Simulator.cpp include/pda/Simulator.hpp \
- include/pda/Automaton.hpp include/pda/Transition.hpp
-include/pda/Simulator.hpp:
-include/pda/Automaton.hpp:
-include/pda/Transition.hpp:
+build/Simulator.o: src/Simulator.cpp include/Simulator.hpp \
+ include/Automaton.hpp include/Transition.hpp
+include/Simulator.hpp:
+include/Automaton.hpp:
+include/Transition.hpp:

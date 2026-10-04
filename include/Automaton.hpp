@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "pda/Transition.hpp"
+#include "Transition.hpp"
 
 namespace pda {
 

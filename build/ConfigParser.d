@@ -1,5 +1,5 @@
-build/ConfigParser.o: src/ConfigParser.cpp include/pda/ConfigParser.hpp \
- include/pda/Automaton.hpp include/pda/Transition.hpp
-include/pda/ConfigParser.hpp:
-include/pda/Automaton.hpp:
-include/pda/Transition.hpp:
+build/ConfigParser.o: src/ConfigParser.cpp include/ConfigParser.hpp \
+ include/Automaton.hpp include/Transition.hpp
+include/ConfigParser.hpp:
+include/Automaton.hpp:
+include/Transition.hpp:

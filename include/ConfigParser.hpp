@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "pda/Automaton.hpp"
+#include "Automaton.hpp"
 
 namespace pda {
 

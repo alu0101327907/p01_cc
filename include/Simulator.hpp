@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "pda/Automaton.hpp"
+#include "Automaton.hpp"
 
 namespace pda {
 
