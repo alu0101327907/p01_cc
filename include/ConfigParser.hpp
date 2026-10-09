@@ -4,9 +4,11 @@
 
 #include "Automaton.hpp"
 
-namespace pda {
+/** @file
+ * @brief Declara la lectura y validación de autómatas desde archivos.
+ */
 
-/// @brief Carga y valida la definición de un autómata con pila desde un archivo de texto.
+/** @brief Carga y valida un autómata con pila desde un archivo de texto.
 ///
 /// El fichero debe contener, en este orden, seis cabeceras (una por línea):
 ///   - Q:     estados, separados por espacios.
@@ -25,10 +27,9 @@ namespace pda {
 ///
 /// Se ignoran las líneas vacías y todo lo que sigue al carácter '#'.
 ///
-/// @param filename Ruta del fichero de configuración.
-/// @return Automaton completamente inicializado y validado.
-/// @throws std::runtime_error Si el fichero no se puede abrir, está mal formado,
-///         contiene símbolos inválidos o no supera la validación del autómata.
+ * @param filename Ruta del fichero de configuración.
+ * @return Autómata inicializado y validado.
+ * @throws std::runtime_error Si el fichero no se puede abrir, está mal formado,
+ * contiene símbolos inválidos o no supera la validación del autómata.
+ */
 Automaton loadAutomaton(const std::string& filename);
-
-} // namespace pda

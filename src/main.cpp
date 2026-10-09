@@ -7,9 +7,7 @@
 #include "ConfigParser.hpp"
 #include "Simulator.hpp"
 
-namespace {
-
-void usage(const char* prog) {
+static void usage(const char* prog) {
     std::cout
         << "Uso: " << prog << " -config <f> -trace <y|n> [-in <f>] [-out <f>]\n"
            "  -config <f>   Fichero con la definicion del automata con pila.\n"
@@ -21,11 +19,9 @@ void usage(const char* prog) {
 }
 
 /// Elimina el '\r' final que dejan algunos ficheros con finales de línea CRLF.
-void trimCR(std::string& s) {
+static void trimCR(std::string& s) {
     if (!s.empty() && s.back() == '\r') s.pop_back();
 }
-
-} // namespace
 
 int main(int argc, char** argv) {
     std::string configFile, inFile, outFile;
@@ -65,9 +61,9 @@ int main(int argc, char** argv) {
     // ------------------------------------------------------------------
     // 2) Cargar y validar el autómata
     // ------------------------------------------------------------------
-    pda::Automaton ap;
+    Automaton ap;
     try {
-        ap = pda::loadAutomaton(configFile);
+        ap = loadAutomaton(configFile);
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";
         return 2;
@@ -118,7 +114,7 @@ int main(int argc, char** argv) {
     // ------------------------------------------------------------------
     // 5) Simular cada cadena
     // ------------------------------------------------------------------
-    pda::Simulator sim(ap);
+    Simulator sim(ap);
 
     for (const auto& w : cadenas) {
         // Aviso si la cadena contiene símbolos fuera de Sigma.

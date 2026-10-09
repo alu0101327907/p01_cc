@@ -4,14 +4,10 @@
 #include <sstream>
 #include <stdexcept>
 
-namespace pda {
-
-namespace {
-
 /// @brief Elimina espacios, tabs y saltos de línea de ambos extremos de la cadena.
 /// @param s Cadena de entrada.
 /// @return Copia de @p s sin espacios iniciales ni finales. Cadena vacía si @p s es solo espacios.
-std::string trim(const std::string& s) {
+static std::string trim(const std::string& s) {
   const auto b = s.find_first_not_of(" \t\r\n");
   if (b == std::string::npos) return "";
   const auto e = s.find_last_not_of(" \t\r\n");
@@ -22,7 +18,7 @@ std::string trim(const std::string& s) {
 /// @param s Cadena de entrada.
 /// @return Vector con los tokens no vacíos, en el orden en que aparecen.
 ///         Vector vacío si @p s es vacía o solo contiene espacios.
-std::vector<std::string> splitTokens(const std::string& s) {
+static std::vector<std::string> splitTokens(const std::string& s) {
   std::vector<std::string> out;
   std::istringstream iss(s);
   std::string tok;
@@ -40,15 +36,13 @@ std::vector<std::string> splitTokens(const std::string& s) {
 ///             (ej. "simbolo de entrada", "simbolo de pila").
 /// @return El carácter del símbolo, o EPSILON si @p tok es ".".
 /// @throws std::runtime_error Si @p tok no es "." ni un único carácter.
-char toSymbol(const std::string& tok, const std::string& what) {
+static char toSymbol(const std::string& tok, const std::string& what) {
     if (tok == ".") return EPSILON;
     if (tok.size() != 1)
         throw std::runtime_error("El " + what + " '" + tok +
                                  "' debe estar formado por un unico caracter.");
     return tok[0];
 }
-
-} // namespace
 
 Automaton loadAutomaton(const std::string& filename) {
     std::ifstream in(filename);
@@ -151,5 +145,3 @@ Automaton loadAutomaton(const std::string& filename) {
 
     return ap;
 }
-
-} // namespace pda

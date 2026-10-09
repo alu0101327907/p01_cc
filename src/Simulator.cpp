@@ -4,12 +4,8 @@
 #include <set>
 #include <sstream>
 
-namespace pda {
-
-namespace {
-
 /// Muestra la pila con la cima a la izquierda (más legible en la traza).
-std::string stackToText(const std::string& stack) {
+static std::string stackToText(const std::string& stack) {
     if (stack.empty()) return "(vacia)";
     std::string out;
     for (auto it = stack.rbegin(); it != stack.rend(); ++it) {
@@ -20,12 +16,10 @@ std::string stackToText(const std::string& stack) {
 }
 
 /// Resto de la entrada a partir de `pos` (o "." si ya se consumió toda).
-std::string remainingToText(const std::string& input, std::size_t pos) {
+static std::string remainingToText(const std::string& input, std::size_t pos) {
     if (pos >= input.size()) return ".";
     return input.substr(pos);
 }
-
-} // namespace
 
 SimulationResult Simulator::run(const std::string& input, bool wantTrace) {
     // Nodo del árbol de cómputo: guarda su configuración, su padre y la
@@ -165,5 +159,3 @@ std::string Simulator::formatTrace(const std::string& input,
 
     return os.str();
 }
-
-} // namespace pda

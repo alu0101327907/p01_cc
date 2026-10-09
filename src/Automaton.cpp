@@ -2,15 +2,9 @@
 // comentario
 #include <sstream>
 
-namespace pda {
-
-namespace {
-
-std::string symStr(char c) {
+static std::string symStr(char c) {
     return c == EPSILON ? "." : std::string(1, c);
 }
-
-} // namespace
 
 bool Automaton::validate(std::string& error) const {
     if (Q.empty())     { error = "El conjunto de estados Q esta vacio.";           return false; }
@@ -103,5 +97,3 @@ std::string Automaton::describe() const {
     for (const auto& t : delta) os << "    " << t.toString() << "\n";
     return os.str();
 }
-
-} // namespace pda
